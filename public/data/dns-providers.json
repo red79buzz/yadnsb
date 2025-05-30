@@ -26,7 +26,9 @@
                 {
                     "type": "DoH",
                     "address": "https://unfiltered.adguard-dns.com/dns-query",
-                    "port": 443
+                    "port": 443,
+                    "method": "POST",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -66,7 +68,9 @@
                 {
                     "type": "DoH",
                     "address": "https://security.cloudflare-dns.com/dns-query",
-                    "port": 443
+                    "port": 443,
+                    "method": "GET",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -101,7 +105,9 @@
                 {
                     "type": "DoH",
                     "address": "https://dns.google/dns-query",
-                    "port": 443
+                    "port": 443,
+                    "method": "POST",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -136,7 +142,9 @@
                 {
                     "type": "DoH",
                     "address": "https://dns10.quad9.net/dns-query",
-                    "port": 443
+                    "port": 443,
+                    "method": "POST",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -171,7 +179,9 @@
                 {
                     "type": "DoH",
                     "address": "https://doh.opendns.com/dns-query",
-                    "port": 443
+                    "port": 443,
+                    "method": "POST",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -186,7 +196,9 @@
                 {
                     "type": "DoH",
                     "address": "https://dns.nextdns.io",
-                    "port": 443
+                    "port": 443,
+                    "method": "GET",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -201,7 +213,9 @@
                 {
                     "type": "DoH",
                     "address": "https://anycast.dns.nextdns.io",
-                    "port": 443
+                    "port": 443,
+                    "method": "GET",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -236,7 +250,9 @@
                 {
                     "type": "DoH",
                     "address": "https://freedns.controld.com/p0",
-                    "port": 443
+                    "port": 443,
+                    "method": "POST",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -251,7 +267,9 @@
                 {
                     "type": "DoH",
                     "address": "https://dns.mullvad.net/dns-query",
-                    "port": 443
+                    "port": 443,
+                    "method": "POST",
+                    "format": "wireformat"
                 },
                 {
                     "type": "DoT",
@@ -266,7 +284,9 @@
                 {
                     "type": "DoH",
                     "address": "https://0ms.dev/dns-query",
-                    "port": 443
+                    "port": 443,
+                    "method": "GET",
+                    "format": "wireformat"
                 }
             ]
         },
