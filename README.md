@@ -3,7 +3,7 @@
 A DNS performance testing IPv4, IPv6, DNS over HTTPS (DoH), DNS over TLS (DoT), and DNS over QUIC (DoQ).
 
 **Public Instance:**
-- https://yadnsb.onrender.com
+- https://yadnsb.on.shiper.app (Thanks Shiper for free upgrade!)
 - https://yadnsb.altendorfme.com
 
 ## Installation
