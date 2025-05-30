@@ -82,7 +82,7 @@ class YADNSBApp {
         // Create table structure
         const tableHtml = `
             <div class="table-responsive">
-                <table class="table table-dark table-striped table-hover mb-0">
+                <table class="table table-dark table-hover mb-0">
                     <thead>
                         <tr>
                             <th style="width: 50px;">
