@@ -324,21 +324,10 @@
     "testDomains": [
         "google.com",
         "cloudflare.com",
-        "amazon.com",
-        "microsoft.com",
-        "facebook.com",
-        "wikipedia.org",
         "bunny.net",
         "fastly.com",
         "cdn77.com",
         "apple.com",
-        "youtube.com",
-        "github.com",
-        "netflix.com",
-        "reddit.com",
-        "stackoverflow.com",
-        "mozilla.org",
-        "linkedin.com",
-        "dropbox.com"
+        "netflix.com"
     ]
 }
