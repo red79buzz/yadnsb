@@ -1,0 +1,75 @@
+{
+  "app": {
+    "title": "YADNSB - Yet Another DNS Benchmark",
+    "subtitle": "Yet Another DNS Benchmark"
+  },
+  "navigation": {
+    "configuration": "Test Configuration",
+    "providers": "DNS Providers",
+    "results": "Results & Rankings"
+  },
+  "configuration": {
+    "testDomains": "Test Domains",
+    "usePresetDomains": "Use preset domains",
+    "customDomains": "Enter custom domains (one per line)",
+    "testInterval": "Interval between requests (seconds)",
+    "testCount": "Number of tests per provider",
+    "protocolTypes": "DNS Protocol Types",
+    "providerCategories": "Provider Categories",
+    "startTest": "Start Benchmark",
+    "stopTest": "Stop Test"
+  },
+  "protocols": {
+    "IPv4": "IPv4",
+    "IPv6": "IPv6",
+    "DoH": "DNS over HTTPS (DoH)",
+    "DoT": "DNS over TLS (DoT)",
+    "DoQ": "DNS over QUIC (DoQ)"
+  },
+  "categories": {
+    "Public": "Public",
+    "Security": "Security",
+    "Family": "Family",
+    "Privacy": "Privacy"
+  },
+  "progress": {
+    "title": "Test Progress",
+    "overall": "Overall Progress",
+    "ready": "Ready to start testing",
+    "testing": "Testing {{provider}} - {{protocol}} ({{current}}/{{total}})",
+    "completed": "Test completed"
+  },
+  "providers": {
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "selected": "{{count}} providers selected"
+  },
+  "results": {
+    "title": "Results & Rankings",
+    "export": "Export",
+    "clear": "Clear",
+    "sortBy": "Sort by:",
+    "noResults": "No test results yet. Start a benchmark to see DNS performance data.",
+    "metrics": {
+      "average": "Average Response Time",
+      "min": "Minimum Response Time",
+      "max": "Maximum Response Time",
+      "median": "Median Response Time",
+      "successRate": "Success Rate"
+    },
+    "units": {
+      "ms": "ms",
+      "percent": "%"
+    }
+  },
+  "errors": {
+    "noProvidersSelected": "Please select at least one DNS provider",
+    "noDomainsSelected": "Please select or enter at least one domain to test",
+    "invalidDomain": "Invalid domain: {{domain}}",
+    "testFailed": "Test failed for {{provider}}: {{error}}",
+    "networkError": "Network error occurred during testing"
+  },
+  "footer": {
+    "description": "YADNSB - Yet Another DNS Benchmark | Open Source DNS Performance Testing Tool"
+  }
+}

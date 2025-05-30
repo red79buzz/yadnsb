@@ -1,0 +1,39 @@
+{
+    "name": "yadnsb",
+    "version": "1.0.0",
+    "description": "Yet Another DNS Benchmar",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node --watch server.js",
+        "build": "echo 'Build completed for Vercel deployment'",
+        "vercel-build": "echo 'Vercel build completed'",
+        "start:debug": "cross-env LOG_LEVEL=DEBUG ENABLE_FILE_LOGGING=true node server.js",
+        "start:trace": "cross-env LOG_LEVEL=TRACE DNS_LOG_ALL_REQUESTS=true node server.js",
+        "logs:clean": "node -e \"const fs=require('fs'); const path=require('path'); if(fs.existsSync('logs')){fs.rmSync('logs',{recursive:true,force:true}); console.log('Logs cleaned');}\"",
+        "logs:analyze": "node -e \"const fs=require('fs'); const path=require('path'); if(fs.existsSync('logs')){const files=fs.readdirSync('logs').filter(f=>f.endsWith('.log')); files.forEach(f=>{const content=fs.readFileSync(path.join('logs',f),'utf8'); content.split('\\n').filter(l=>l.trim()).forEach(line=>{try{const log=JSON.parse(line); if(log.level==='ERROR')console.log(`${log.timestamp} [${log.resolver||'N/A'}] ${log.domain||'N/A'} - ${log.error||log.message}`);}catch(e){}});});}else{console.log('No logs directory found');}\""
+    },
+    "keywords": [
+        "dns",
+        "benchmark",
+        "performance",
+        "doh",
+        "dot",
+        "doq"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "dns2": "^2.1.0",
+        "express": "^4.18.2",
+        "node-fetch": "^3.3.2",
+        "ws": "^8.14.2"
+    },
+    "engines": {
+        "node": ">=22.0.0"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3"
+    }
+}

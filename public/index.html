@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yet Another DNS Benchmark</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="YaDNSb" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-speedometer2 me-2"></i>
+                YaDNSb
+            </a>
+            <div class="d-flex align-items-center">
+                <span class="navbar-text me-3">
+                    Yet Another DNS Benchmark
+                </span>
+                <a href="https://github.com/altendorfme/yadnsb" target="_blank" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-github me-2"></i>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-gear me-2"></i>
+                            Configuration
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="testDomains" class="form-label">Domains</label>
+                            <div class="mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="usePresetDomains" checked>
+                                    <label class="form-check-label" for="usePresetDomains">
+                                        Use preset domains
+                                    </label>
+                                </div>
+                            </div>
+                            <select class="form-select mb-2" id="presetDomains" multiple size="4">
+                            </select>
+                            <textarea class="form-control" id="customDomains" rows="3" placeholder="Enter custom domains (one per line)"></textarea>
+                        </div>
+
+                        <div class="row">
+                        <div class="col-6">
+                        <div class="mb-3">
+                            <label for="testInterval" class="form-label">Interval between requests (seconds)</label>
+                            <input type="number" class="form-control" id="testInterval" value="1" min="0.1" step="0.1">
+                        </div>
+</div>
+                        <div class="col-6">
+                        <div class="mb-3">
+                            <label for="testCount" class="form-label">Number of tests per provider</label>
+                            <input type="number" class="form-control" id="testCount" value="5" min="1" max="20">
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Protocol Types</label>
+                            <div class="form-check">
+                                <input class="form-check-input protocol-filter" type="checkbox" id="protocolIPv4" value="IPv4" checked>
+                                <label class="form-check-label" for="protocolIPv4">IPv4</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input protocol-filter" type="checkbox" id="protocolIPv6" value="IPv6" checked>
+                                <label class="form-check-label" for="protocolIPv6">IPv6</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input protocol-filter" type="checkbox" id="protocolDoH" value="DoH" checked>
+                                <label class="form-check-label" for="protocolDoH">DNS over HTTPS (DoH)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input protocol-filter" type="checkbox" id="protocolDoT" value="DoT" checked>
+                                <label class="form-check-label" for="protocolDoT">DNS over TLS (DoT)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input protocol-filter" type="checkbox" id="protocolDoQ" value="DoQ">
+                                <label class="form-check-label" for="protocolDoQ">DNS over QUIC (DoQ)</label>
+                            </div>
+                        </div>
+
+
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-success" id="startTest">
+                                <i class="bi bi-play-fill me-2"></i>
+                                Start
+                            </button>
+                            <button type="button" class="btn btn-danger d-none" id="stopTest">
+                                <i class="bi bi-stop-fill me-2"></i>
+                                Stop
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Progress
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <small class="text-muted">Overall progress</small>
+                            <div class="progress">
+                                <div class="progress-bar" id="overallProgress" role="progressbar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div id="currentTest" class="small text-muted">Ready to start testing</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-list-ol me-2"></i>
+                            DNS Providers
+                        </h5>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-outline-light" id="selectAllProviders">
+                                <i class="bi bi-check-all"></i>
+                                Select All
+                            </button>
+                            <button type="button" class="btn btn-outline-light" id="deselectAllProviders">
+                                <i class="bi bi-x-square"></i>
+                                Deselect All
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="providersList" class="row">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-trophy me-2"></i>
+                            Results & Rankings
+                        </h5>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-outline-light" id="exportCSV">
+                                <i class="bi bi-file-earmark-spreadsheet"></i>
+                                CSV
+                            </button>
+                            <button type="button" class="btn btn-outline-light" id="exportJSON">
+                                <i class="bi bi-file-earmark-code"></i>
+                                JSON
+                            </button>
+                            <button type="button" class="btn btn-outline-light" id="clearResults">
+                                <i class="bi bi-trash"></i>
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="pt-3 ps-3 pe-3">
+                            <label for="sortBy" class="form-label">Sort by:</label>
+                            <select class="form-select form-select-sm" id="sortBy" style="width: auto; display: inline-block;">
+                                <option value="average">Average Response Time</option>
+                                <option value="min">Minimum Response Time</option>
+                                <option value="max">Maximum Response Time</option>
+                                <option value="median">Median Response Time</option>
+                                <option value="successRate">Success Rate</option>
+                            </select>
+                        </div>
+                        <div id="resultsContainer">
+                            <div class="text-center text-muted py-5">
+                                <i class="bi bi-speedometer2 display-1"></i>
+                                <p class="mt-3">No test results yet. Start a benchmark to see DNS performance data.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/js/dns-tester.js"></script>
+    <script src="/js/results.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
