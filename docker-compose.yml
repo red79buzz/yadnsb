@@ -1,0 +1,15 @@
+services:
+  yadnsb:
+    image: ghcr.io/altendorfme/yadnsb:latest
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - yadnsb
+
+networks:
+  yadnsb:
+    driver: bridge

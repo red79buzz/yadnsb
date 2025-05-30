@@ -7,7 +7,14 @@
     "scripts": {
         "start": "node server.js",
         "dev": "node --watch server.js",
-        "build": "echo 'Build completed'"
+        "build": "echo 'Build completed'",
+        "docker:build": "docker build -t yadnsb .",
+        "docker:run": "docker run -d -p 3000:3000 --name yadnsb yadnsb",
+        "docker:stop": "docker stop yadnsb && docker rm yadnsb",
+        "docker:logs": "docker logs -f yadnsb",
+        "docker:compose:up": "docker-compose up -d",
+        "docker:compose:down": "docker-compose down",
+        "docker:compose:logs": "docker-compose logs -f"
     },
     "keywords": [
         "dns",

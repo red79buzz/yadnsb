@@ -183,4 +183,16 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Docker
+.env.local
+.env.development
+.env.staging
+docker-compose.override.yml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node,Linux,macOS,Windows

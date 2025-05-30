@@ -7,12 +7,22 @@ A DNS performance testing IPv4, IPv6, DNS over HTTPS (DoH), DNS over TLS (DoT), 
 
 ## Installation
 
+## 1. Docker
+
+```bash
+docker run -d \
+  --name yadnsb \
+  -p 3000:3000 \
+  --restart unless-stopped \
+  ghcr.io/altendorfme/yadnsb:latest
+```
+
+## 2: Local
+
 ### Prerequisites
 
-- Node.js 20 or higher
+- Node.js 22 or higher
 - npm or yarn package manager
-
-### Setup
 
 1. Clone or download the project files
 2. Install dependencies:
@@ -98,6 +108,7 @@ Export test results in two formats:
 ### WebSocket API
 
 - `/ws` - Real-time test updates and progress
+
 
 ## Development
 
