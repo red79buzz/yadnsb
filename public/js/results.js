@@ -18,7 +18,7 @@ class ResultsManager {
 
     setResults(results) {
         if (Array.isArray(results)) {
-            this.results = [...results]; // Create a copy to avoid reference issues
+            this.results = [...results];
         } else {
             this.results = [];
         }
@@ -55,7 +55,6 @@ class ResultsManager {
     calculateStatistics() {
         const stats = new Map();
 
-        // First pass: count all tests and collect successful ones
         this.results.forEach(result => {
             if (!result.provider || !result.server || !result.server.type) {
                 console.warn('Invalid result format:', result);
@@ -78,7 +77,6 @@ class ResultsManager {
             const stat = stats.get(key);
             stat.totalCount++;
 
-            // Only add response time if the test was successful and has a valid response time > 0
             if (result.success && result.responseTime !== null && result.responseTime !== undefined && result.responseTime > 0) {
                 stat.responseTimes.push(result.responseTime);
                 stat.successCount++;
@@ -86,7 +84,7 @@ class ResultsManager {
         });
 
         const processedStats = Array.from(stats.values())
-            .filter(stat => stat.responseTimes.length > 0) // Only include stats with valid response times
+            .filter(stat => stat.responseTimes.length > 0)
             .map(stat => {
                 const times = stat.responseTimes.sort((a, b) => a - b);
                 const len = times.length;
@@ -131,6 +129,10 @@ class ResultsManager {
         this.displayResults();
     }
 
+    updateTranslations() {
+        this.displayResults();
+    }
+
     displayResults() {
         const container = document.getElementById('resultsContainer');
         if (!container) {
@@ -144,7 +146,7 @@ class ResultsManager {
             container.innerHTML = `
                 <div class="text-center text-muted py-5">
                     <i class="bi bi-speedometer2 display-1"></i>
-                    <p class="mt-3">No test results yet. Start a benchmark to see DNS performance data.</p>
+                    <p class="mt-3">${window.i18n ? window.i18n.t('results.noResults') : 'No test results yet. Start a benchmark to see DNS performance data.'}</p>
                 </div>
             `;
             return;
@@ -170,6 +172,10 @@ class ResultsManager {
     }
 
     generateResultsHTML(stats) {
+        const i18n = window.i18n;
+        const msUnit = i18n ? i18n.t('results.units.ms') : 'ms';
+        const percentUnit = i18n ? i18n.t('results.units.percent') : '%';
+        
         const rows = stats.map((stat, index) => {
             return `
                 <tr>
@@ -178,13 +184,13 @@ class ResultsManager {
                         <div class="fw-semibold">${stat.provider}</div>
                         <small class="text-muted">${this.getProtocolBadge(stat.protocol)}</small>
                     </td>
-                    <td class="text-end">${stat.min.toFixed(1)} ms</td>
-                    <td class="text-end">${stat.median.toFixed(1)} ms</td>
-                    <td class="text-end">${stat.average.toFixed(1)} ms</td>
-                    <td class="text-end">${stat.max.toFixed(1)} ms</td>
+                    <td class="text-end">${stat.min.toFixed(1)} ${msUnit}</td>
+                    <td class="text-end">${stat.median.toFixed(1)} ${msUnit}</td>
+                    <td class="text-end">${stat.average.toFixed(1)} ${msUnit}</td>
+                    <td class="text-end">${stat.max.toFixed(1)} ${msUnit}</td>
                     <td class="text-end">
                         <span class="badge ${this.getSuccessRateBadge(stat.successRate)}">
-                            ${stat.successRate.toFixed(1)}%
+                            ${stat.successRate.toFixed(1)}${percentUnit}
                         </span>
                     </td>
                     <td class="text-end">
@@ -201,11 +207,11 @@ class ResultsManager {
                         <tr>
                             <th>Rank</th>
                             <th>Provider</th>
-                            <th class="text-end">Min</th>
-                            <th class="text-end">Median</th>
-                            <th class="text-end">Average</th>
-                            <th class="text-end">Max</th>
-                            <th class="text-end">Success Rate</th>
+                            <th class="text-end">${i18n ? i18n.t('results.metrics.min') : 'Min'}</th>
+                            <th class="text-end">${i18n ? i18n.t('results.metrics.median') : 'Median'}</th>
+                            <th class="text-end">${i18n ? i18n.t('results.metrics.average') : 'Average'}</th>
+                            <th class="text-end">${i18n ? i18n.t('results.metrics.max') : 'Max'}</th>
+                            <th class="text-end">${i18n ? i18n.t('results.metrics.successRate') : 'Success Rate'}</th>
                             <th class="text-end">Tests</th>
                         </tr>
                     </thead>
@@ -217,7 +223,7 @@ class ResultsManager {
             <div class="p-3">
                 <small class="text-muted">
                     <i class="bi bi-info-circle me-1"></i>
-                    Total results: ${this.results.length} | 
+                    Total results: ${this.results.length} |
                     Successful queries: ${this.results.filter(r => r.success).length} |
                     Last updated: ${new Date().toLocaleString()}
                 </small>

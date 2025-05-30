@@ -12,6 +12,7 @@ class YADNSBApp {
         this.renderProviders();
         this.renderPresetDomains();
         this.updateUI();
+        this.loadSavedLanguage();
         
         resultsManager.displayResults();
     }
@@ -48,6 +49,12 @@ class YADNSBApp {
             checkbox.addEventListener('change', () => this.filterProviders());
         });
 
+        document.querySelectorAll('[data-lang]').forEach(langLink => {
+            langLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.changeLanguage(e.target.closest('[data-lang]').dataset.lang);
+            });
+        });
 
         document.getElementById('usePresetDomains').addEventListener('change', (e) => {
             const presetSelect = document.getElementById('presetDomains');
@@ -79,7 +86,7 @@ class YADNSBApp {
             return hasMatchingProtocol;
         });
 
-        // Create table structure
+        const i18n = window.i18n;
         const tableHtml = `
             <div class="table-responsive">
                 <table class="table table-dark table-hover mb-0">
@@ -88,10 +95,10 @@ class YADNSBApp {
                             <th style="width: 50px;">
                                 <input type="checkbox" class="form-check-input" id="selectAllCheckbox">
                             </th>
-                            <th>Provider</th>
-                            <th>Protocol</th>
-                            <th>Address</th>
-                            <th>Port</th>
+                            <th>${i18n ? i18n.t('providers.provider') : 'Provider'}</th>
+                            <th>${i18n ? i18n.t('providers.protocol') : 'Protocol'}</th>
+                            <th>${i18n ? i18n.t('providers.address') : 'Address'}</th>
+                            <th>${i18n ? i18n.t('providers.port') : 'Port'}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -103,12 +110,10 @@ class YADNSBApp {
 
         container.innerHTML = tableHtml;
 
-        // Add event listeners
         document.querySelectorAll('.provider-checkbox').forEach(checkbox => {
             checkbox.addEventListener('change', (e) => this.toggleProvider(e.target));
         });
 
-        // Add select all functionality
         const selectAllCheckbox = document.getElementById('selectAllCheckbox');
         if (selectAllCheckbox) {
             selectAllCheckbox.addEventListener('change', (e) => {
@@ -232,7 +237,7 @@ class YADNSBApp {
         this.updateProviderCount();
         this.updateSelectAllCheckbox();
         this.updateUI();
-        this.renderProviders(); // Re-render to update row highlighting
+        this.renderProviders();
     }
 
     selectAllProviders() {
@@ -335,8 +340,10 @@ class YADNSBApp {
     }
 
     validateConfiguration(config) {
+        const i18n = window.i18n;
+        
         if (config.selectedProviders.length === 0) {
-            return { valid: false, message: 'Please select at least one DNS provider.' };
+            return { valid: false, message: i18n ? i18n.t('errors.noProvidersSelected') : 'Please select at least one DNS provider.' };
         }
 
         if (config.selectedProtocols.length === 0) {
@@ -347,7 +354,7 @@ class YADNSBApp {
                               (config.customDomains && config.customDomains.trim());
 
         if (!hasTestDomains) {
-            return { valid: false, message: 'Please select preset domains or enter custom domains to test.' };
+            return { valid: false, message: i18n ? i18n.t('errors.noDomainsSelected') : 'Please select preset domains or enter custom domains to test.' };
         }
 
         if (config.testInterval < 0) {
@@ -388,7 +395,9 @@ class YADNSBApp {
     }
 
     clearResults() {
-        if (confirm('Are you sure you want to clear all test results?')) {
+        const i18n = window.i18n;
+        const message = i18n ? i18n.t('results.confirmClear') : 'Are you sure you want to clear all test results?';
+        if (confirm(message)) {
             resultsManager.clearResults();
             dnsTester.clearResults();
         }
@@ -399,6 +408,43 @@ class YADNSBApp {
         alert(`Test error: ${error}`);
         this.isTestRunning = false;
         this.updateUI();
+    }
+
+    async changeLanguage(langCode) {
+        try {
+            await window.i18n.setLanguage(langCode);
+            this.updateLanguageDisplay(langCode);
+            
+            if (window.resultsManager) {
+                window.resultsManager.updateTranslations();
+            }
+            
+            localStorage.setItem('selectedLanguage', langCode);
+            
+            document.documentElement.lang = langCode;
+        } catch (error) {
+            console.error('Failed to change language:', error);
+        }
+    }
+
+    updateLanguageDisplay(langCode) {
+        const languageNames = {
+            'en': 'English',
+            'pt-BR': 'Português (BR)',
+            'fr': 'Français'
+        };
+        
+        const currentLanguageSpan = document.getElementById('currentLanguage');
+        if (currentLanguageSpan) {
+            currentLanguageSpan.textContent = languageNames[langCode] || 'English';
+        }
+    }
+
+    loadSavedLanguage() {
+        const savedLanguage = localStorage.getItem('selectedLanguage');
+        if (savedLanguage && ['en', 'pt-BR', 'fr'].includes(savedLanguage)) {
+            this.changeLanguage(savedLanguage);
+        }
     }
 }
 

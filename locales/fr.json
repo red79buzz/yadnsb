@@ -15,7 +15,6 @@
     "testInterval": "Intervalle entre les requêtes (secondes)",
     "testCount": "Nombre de tests par fournisseur",
     "protocolTypes": "Types de protocoles DNS",
-    "providerCategories": "Catégories de fournisseurs",
     "startTest": "Démarrer le benchmark",
     "stopTest": "Arrêter le test"
   },
@@ -25,12 +24,6 @@
     "DoH": "DNS over HTTPS (DoH)",
     "DoT": "DNS over TLS (DoT)",
     "DoQ": "DNS over QUIC (DoQ)"
-  },
-  "categories": {
-    "Public": "Public",
-    "Security": "Sécurité",
-    "Family": "Famille",
-    "Privacy": "Confidentialité"
   },
   "progress": {
     "title": "Progression du test",
@@ -42,7 +35,11 @@
   "providers": {
     "selectAll": "Tout sélectionner",
     "deselectAll": "Tout désélectionner",
-    "selected": "{{count}} fournisseurs sélectionnés"
+    "selected": "{{count}} fournisseurs sélectionnés",
+    "provider": "Fournisseur",
+    "protocol": "Protocole",
+    "address": "Adresse",
+    "port": "Port"
   },
   "results": {
     "title": "Résultats et classement",
@@ -50,6 +47,7 @@
     "clear": "Effacer",
     "sortBy": "Trier par :",
     "noResults": "Aucun résultat pour l'instant. Lance un benchmark pour afficher les performances DNS.",
+    "confirmClear": "Êtes-vous sûr de vouloir effacer tous les résultats des tests ?",
     "metrics": {
       "average": "Temps de réponse moyen",
       "min": "Temps de réponse minimum",

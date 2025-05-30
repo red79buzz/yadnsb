@@ -51,7 +51,12 @@ class I18n {
             const key = element.getAttribute('data-i18n');
             const params = element.getAttribute('data-i18n-params');
             const parsedParams = params ? JSON.parse(params) : {};
-            element.textContent = this.t(key, parsedParams);
+            
+            if (element.tagName.toLowerCase() === 'option') {
+                element.textContent = this.t(key, parsedParams);
+            } else {
+                element.textContent = this.t(key, parsedParams);
+            }
         });
 
         document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
