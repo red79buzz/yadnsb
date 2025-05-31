@@ -1,9 +1,15 @@
 # YaDNSb - Yet Another DNS Benchmark
 
+[![Forks](https://img.shields.io/github/forks/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/network/members)
+[![Stars](https://img.shields.io/github/stars/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/stargazers)
+[![Issues](https://img.shields.io/github/issues/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/issues)
+
 A DNS performance testing IPv4, IPv6, DNS over HTTPS (DoH), DNS over TLS (DoT), and DNS over QUIC (DoQ).
 
 **Public Instance:**
 - https://yadnsb.altendorfme.com (Thanks [Shiper.app](https://shiper.app/) for free upgrade!)
+
+[![Get it on Shiper](https://shiper.app/button.svg)](https://shiper.app/deploy?displayName=yadnsb&framework=node&repository=altendorfme/yadnsb&port=3000&basePath=/&maxPreviewDeployments=1&buildParameters={%22nodeVersion%22:%2222.16.0%22,%22packageManager%22:%22auto%22,%22runScript%22:%22start%22,%22buildScript%22:%22build%22})
 
 ## Installation
 
@@ -119,8 +125,6 @@ Edit `public/data/dns-providers.json`:
 ```json
 {
   "name": "Provider Name",
-  "category": "Public|Security|Family|Privacy",
-  "description": "Provider description",
   "servers": [
     {"type": "IPv4", "address": "1.2.3.4", "port": 53},
     {"type": "DoH", "address": "https://dns.example.com/dns-query", "port": 443}
@@ -140,3 +144,11 @@ npm run dev
 
 - **DoQ Support**: Limited implementation due to QUIC protocol complexity
 - **IPv6 Testing**: Requires IPv6 network connectivity
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=altendorfme/yadnsb&type=Date)](https://star-history.com/#altendorfme/yadnsb&Date)
+
+---
+
+Made with ❤️! If you have questions or suggestions, open an issue and we'll help! 😉
