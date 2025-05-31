@@ -1,73 +1,103 @@
 {
-  "app": {
-    "title": "YaDNSb - Yet Another DNS Benchmark",
-    "subtitle": "Yet Another DNS Benchmark"
-  },
-  "navigation": {
-    "configuration": "Test Configuration",
-    "providers": "DNS Providers",
-    "results": "Results & Rankings"
-  },
-  "configuration": {
-    "testDomains": "Test Domains",
-    "usePresetDomains": "Use preset domains",
-    "customDomains": "Enter custom domains (one per line)",
-    "testInterval": "Interval between requests (seconds)",
-    "testCount": "Number of tests per provider",
-    "protocolTypes": "DNS Protocol Types",
-    "startTest": "Start Benchmark",
-    "stopTest": "Stop Test"
-  },
-  "protocols": {
-    "IPv4": "IPv4",
-    "IPv6": "IPv6",
-    "DoH": "DNS over HTTPS (DoH)",
-    "DoT": "DNS over TLS (DoT)",
-    "DoQ": "DNS over QUIC (DoQ)"
-  },
-  "progress": {
-    "title": "Test Progress",
-    "overall": "Overall Progress",
-    "ready": "Ready to start testing",
-    "testing": "Testing {{provider}} - {{protocol}} ({{current}}/{{total}})",
-    "completed": "Test completed"
-  },
-  "providers": {
-    "selectAll": "Select All",
-    "deselectAll": "Deselect All",
-    "selected": "{{count}} providers selected",
-    "provider": "Provider",
-    "protocol": "Protocol",
-    "address": "Address",
-    "port": "Port"
-  },
-  "results": {
-    "title": "Results & Rankings",
-    "export": "Export",
-    "clear": "Clear",
-    "sortBy": "Sort by:",
-    "noResults": "No test results yet. Start a benchmark to see DNS performance data.",
-    "confirmClear": "Are you sure you want to clear all test results?",
-    "metrics": {
-      "average": "Average Response Time",
-      "min": "Minimum Response Time",
-      "max": "Maximum Response Time",
-      "median": "Median Response Time",
-      "successRate": "Success Rate"
+    "app": {
+        "title": "YaDNSb - Yet Another DNS Benchmark",
+        "subtitle": "Yet Another DNS Benchmark"
     },
-    "units": {
-      "ms": "ms",
-      "percent": "%"
+    "navigation": {
+        "configuration": "Test Configuration",
+        "providers": "DNS Providers",
+        "results": "Results & Rankings"
+    },
+    "configuration": {
+        "testDomains": "Test Domains",
+        "usePresetDomains": "Use preset domains",
+        "customDomains": "Enter custom domains (one per line)",
+        "testInterval": "Interval between requests (seconds)",
+        "testCount": "Number of tests per provider",
+        "protocolTypes": "DNS Protocol Types",
+        "startTest": "Start Benchmark",
+        "stopTest": "Stop Test"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "DNS over HTTPS (DoH)",
+        "DoT": "DNS over TLS (DoT)",
+        "DoQ": "DNS over QUIC (DoQ)"
+    },
+    "progress": {
+        "title": "Test Progress",
+        "overall": "Overall Progress",
+        "ready": "Ready to start testing",
+        "testing": "Testing {{provider}} - {{protocol}} ({{current}}/{{total}})",
+        "completed": "Test completed"
+    },
+    "providers": {
+        "selectAll": "Select All",
+        "deselectAll": "Deselect All",
+        "selected": "{{count}} providers selected",
+        "provider": "Provider",
+        "protocol": "Protocol",
+        "address": "Address",
+        "port": "Port",
+        "addCustom": "Add Custom Provider",
+        "customProvider": "Custom Provider"
+    },
+    "customProvider": {
+        "title": "Add Custom Provider",
+        "name": "Provider Name",
+        "namePlaceholder": "e.g. My Custom DNS",
+        "ipv4Primary": "Primary IPv4",
+        "ipv4Secondary": "Secondary IPv4 (optional)",
+        "ipv6Primary": "Primary IPv6",
+        "ipv6Secondary": "Secondary IPv6 (optional)",
+        "dohUrl": "DoH URL (optional)",
+        "dohUrlPlaceholder": "https://example.com/dns-query",
+        "dotHost": "DoT Host (optional)",
+        "dotHostPlaceholder": "dns.example.com",
+        "doqHost": "DoQ Host (optional)",
+        "doqHostPlaceholder": "dns.example.com",
+        "port": "Port",
+        "add": "Add Provider",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "delete": "Delete",
+        "confirmDelete": "Are you sure you want to delete this custom provider?",
+        "validation": {
+            "nameRequired": "Provider name is required",
+            "invalidIPv4": "Invalid IPv4 address",
+            "invalidIPv6": "Invalid IPv6 address",
+            "invalidUrl": "Invalid URL",
+            "atLeastOneServer": "At least one server must be configured"
+        }
+    },
+    "results": {
+        "title": "Results & Rankings",
+        "export": "Export",
+        "clear": "Clear",
+        "sortBy": "Sort by:",
+        "noResults": "No test results yet. Start a benchmark to see DNS performance data.",
+        "confirmClear": "Are you sure you want to clear all test results?",
+        "metrics": {
+            "average": "Average Response Time",
+            "min": "Minimum Response Time",
+            "max": "Maximum Response Time",
+            "median": "Median Response Time",
+            "successRate": "Success Rate"
+        },
+        "units": {
+            "ms": "ms",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "Please select at least one DNS provider",
+        "noDomainsSelected": "Please select or enter at least one domain to test",
+        "invalidDomain": "Invalid domain: {{domain}}",
+        "testFailed": "Test failed for {{provider}}: {{error}}",
+        "networkError": "Network error occurred during testing"
+    },
+    "footer": {
+        "description": "YADNSB - Yet Another DNS Benchmark | Open Source DNS Performance Testing Tool"
     }
-  },
-  "errors": {
-    "noProvidersSelected": "Please select at least one DNS provider",
-    "noDomainsSelected": "Please select or enter at least one domain to test",
-    "invalidDomain": "Invalid domain: {{domain}}",
-    "testFailed": "Test failed for {{provider}}: {{error}}",
-    "networkError": "Network error occurred during testing"
-  },
-  "footer": {
-    "description": "YADNSB - Yet Another DNS Benchmark | Open Source DNS Performance Testing Tool"
-  }
 }

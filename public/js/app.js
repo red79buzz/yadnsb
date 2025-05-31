@@ -23,11 +23,22 @@ class YADNSBApp {
             const data = await response.json();
             this.providers = data.providers;
             this.testDomains = data.testDomains;
+            
+            if (window.customProvidersManager) {
+                const customProviders = window.customProvidersManager.getCustomProviders();
+                this.providers = [...this.providers, ...customProviders];
+            }
         } catch (error) {
             console.error('Failed to load DNS providers:', error);
             this.providers = [];
             this.testDomains = [];
         }
+    }
+
+    refreshProviders() {
+        this.loadProviders().then(() => {
+            this.renderProviders();
+        });
     }
 
     setupEventListeners() {
@@ -36,6 +47,7 @@ class YADNSBApp {
         
         document.getElementById('selectAllProviders').addEventListener('click', () => this.selectAllProviders());
         document.getElementById('deselectAllProviders').addEventListener('click', () => this.deselectAllProviders());
+        document.getElementById('addCustomProvider').addEventListener('click', () => this.addCustomProvider());
         
         document.getElementById('exportCSV').addEventListener('click', () => this.exportCSV());
         document.getElementById('exportJSON').addEventListener('click', () => this.exportJSON());
@@ -114,6 +126,20 @@ class YADNSBApp {
             checkbox.addEventListener('change', (e) => this.toggleProvider(e.target));
         });
 
+        document.querySelectorAll('.edit-custom-provider').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const index = parseInt(e.target.closest('.edit-custom-provider').dataset.providerIndex);
+                this.editCustomProvider(index);
+            });
+        });
+
+        document.querySelectorAll('.delete-custom-provider').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const index = parseInt(e.target.closest('.delete-custom-provider').dataset.providerIndex);
+                this.deleteCustomProvider(index);
+            });
+        });
+
         const selectAllCheckbox = document.getElementById('selectAllCheckbox');
         if (selectAllCheckbox) {
             selectAllCheckbox.addEventListener('change', (e) => {
@@ -132,7 +158,7 @@ class YADNSBApp {
     generateTableRows(filteredProviders, selectedProtocols) {
         let rows = '';
         
-        filteredProviders.forEach(provider => {
+        filteredProviders.forEach((provider, providerIndex) => {
             const filteredServers = provider.servers.filter(server =>
                 selectedProtocols.includes(server.type)
             );
@@ -154,7 +180,23 @@ class YADNSBApp {
                                        ${isSelected ? 'checked' : ''}>
                             </td>
                             <td rowspan="${rowspan}" class="align-middle fw-semibold">
-                                ${provider.name}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>${provider.name}</span>
+                                    ${provider.isCustom ? `
+                                        <div class="btn-group btn-group-sm">
+                                            <button type="button" class="btn btn-outline-warning btn-sm edit-custom-provider"
+                                                    data-provider-index="${this.getCustomProviderIndex(provider.name)}"
+                                                    title="${window.i18n ? window.i18n.t('customProvider.edit') : 'Edit'}">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm delete-custom-provider"
+                                                    data-provider-index="${this.getCustomProviderIndex(provider.name)}"
+                                                    title="${window.i18n ? window.i18n.t('customProvider.delete') : 'Delete'}">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    ` : ''}
+                                </div>
                             </td>
                         ` : ''}
                         <td>
@@ -445,6 +487,39 @@ class YADNSBApp {
         if (savedLanguage && ['en', 'pt-BR', 'fr'].includes(savedLanguage)) {
             this.changeLanguage(savedLanguage);
         }
+    }
+
+    addCustomProvider() {
+        if (window.customProvidersManager) {
+            window.customProvidersManager.showAddProviderModal();
+        }
+    }
+
+    editCustomProvider(index) {
+        if (window.customProvidersManager) {
+            window.customProvidersManager.showEditProviderModal(index);
+        }
+    }
+
+    deleteCustomProvider(index) {
+        if (window.customProvidersManager) {
+            const i18n = window.i18n;
+            const message = i18n ? i18n.t('customProvider.confirmDelete') : 'Are you sure you want to delete this custom provider?';
+            if (confirm(message)) {
+                const result = window.customProvidersManager.deleteProvider(index);
+                if (result.success) {
+                    this.refreshProviders();
+                }
+            }
+        }
+    }
+
+    getCustomProviderIndex(providerName) {
+        if (window.customProvidersManager) {
+            const customProviders = window.customProvidersManager.getCustomProviders();
+            return customProviders.findIndex(p => p.name === providerName);
+        }
+        return -1;
     }
 }
 

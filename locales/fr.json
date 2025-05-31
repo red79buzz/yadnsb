@@ -1,73 +1,103 @@
 {
-  "app": {
-    "title": "YaDNSb - Encore un autre benchmark DNS",
-    "subtitle": "Encore un autre benchmark DNS"
-  },
-  "navigation": {
-    "configuration": "Configuration du test",
-    "providers": "Fournisseurs DNS",
-    "results": "Résultats et classement"
-  },
-  "configuration": {
-    "testDomains": "Domaines de test",
-    "usePresetDomains": "Utiliser les domaines prédéfinis",
-    "customDomains": "Saisis des domaines personnalisés (un par ligne)",
-    "testInterval": "Intervalle entre les requêtes (secondes)",
-    "testCount": "Nombre de tests par fournisseur",
-    "protocolTypes": "Types de protocoles DNS",
-    "startTest": "Démarrer le benchmark",
-    "stopTest": "Arrêter le test"
-  },
-  "protocols": {
-    "IPv4": "IPv4",
-    "IPv6": "IPv6",
-    "DoH": "DNS over HTTPS (DoH)",
-    "DoT": "DNS over TLS (DoT)",
-    "DoQ": "DNS over QUIC (DoQ)"
-  },
-  "progress": {
-    "title": "Progression du test",
-    "overall": "Progression globale",
-    "ready": "Prêt à démarrer le test",
-    "testing": "Test de {{provider}} - {{protocol}} ({{current}}/{{total}})",
-    "completed": "Test terminé"
-  },
-  "providers": {
-    "selectAll": "Tout sélectionner",
-    "deselectAll": "Tout désélectionner",
-    "selected": "{{count}} fournisseurs sélectionnés",
-    "provider": "Fournisseur",
-    "protocol": "Protocole",
-    "address": "Adresse",
-    "port": "Port"
-  },
-  "results": {
-    "title": "Résultats et classement",
-    "export": "Exporter",
-    "clear": "Effacer",
-    "sortBy": "Trier par :",
-    "noResults": "Aucun résultat pour l'instant. Lance un benchmark pour afficher les performances DNS.",
-    "confirmClear": "Êtes-vous sûr de vouloir effacer tous les résultats des tests ?",
-    "metrics": {
-      "average": "Temps de réponse moyen",
-      "min": "Temps de réponse minimum",
-      "max": "Temps de réponse maximum",
-      "median": "Temps de réponse médian",
-      "successRate": "Taux de réussite"
+    "app": {
+        "title": "YaDNSb - Encore un autre benchmark DNS",
+        "subtitle": "Encore un autre benchmark DNS"
     },
-    "units": {
-      "ms": "ms",
-      "percent": "%"
+    "navigation": {
+        "configuration": "Configuration du test",
+        "providers": "Fournisseurs DNS",
+        "results": "Résultats et classement"
+    },
+    "configuration": {
+        "testDomains": "Domaines de test",
+        "usePresetDomains": "Utiliser les domaines prédéfinis",
+        "customDomains": "Saisis des domaines personnalisés (un par ligne)",
+        "testInterval": "Intervalle entre les requêtes (secondes)",
+        "testCount": "Nombre de tests par fournisseur",
+        "protocolTypes": "Types de protocoles DNS",
+        "startTest": "Démarrer le benchmark",
+        "stopTest": "Arrêter le test"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "DNS over HTTPS (DoH)",
+        "DoT": "DNS over TLS (DoT)",
+        "DoQ": "DNS over QUIC (DoQ)"
+    },
+    "progress": {
+        "title": "Progression du test",
+        "overall": "Progression globale",
+        "ready": "Prêt à démarrer le test",
+        "testing": "Test de {{provider}} - {{protocol}} ({{current}}/{{total}})",
+        "completed": "Test terminé"
+    },
+    "providers": {
+        "selectAll": "Tout sélectionner",
+        "deselectAll": "Tout désélectionner",
+        "selected": "{{count}} fournisseurs sélectionnés",
+        "provider": "Fournisseur",
+        "protocol": "Protocole",
+        "address": "Adresse",
+        "port": "Port",
+        "addCustom": "Ajouter un fournisseur personnalisé",
+        "customProvider": "Fournisseur personnalisé"
+    },
+    "customProvider": {
+        "title": "Ajouter un fournisseur personnalisé",
+        "name": "Nom du fournisseur",
+        "namePlaceholder": "ex. Mon DNS personnalisé",
+        "ipv4Primary": "IPv4 primaire",
+        "ipv4Secondary": "IPv4 secondaire (optionnel)",
+        "ipv6Primary": "IPv6 primaire",
+        "ipv6Secondary": "IPv6 secondaire (optionnel)",
+        "dohUrl": "URL DoH (optionnel)",
+        "dohUrlPlaceholder": "https://exemple.com/dns-query",
+        "dotHost": "Hôte DoT (optionnel)",
+        "dotHostPlaceholder": "dns.exemple.com",
+        "doqHost": "Hôte DoQ (optionnel)",
+        "doqHostPlaceholder": "dns.exemple.com",
+        "port": "Port",
+        "add": "Ajouter le fournisseur",
+        "cancel": "Annuler",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce fournisseur personnalisé ?",
+        "validation": {
+            "nameRequired": "Le nom du fournisseur est requis",
+            "invalidIPv4": "Adresse IPv4 invalide",
+            "invalidIPv6": "Adresse IPv6 invalide",
+            "invalidUrl": "URL invalide",
+            "atLeastOneServer": "Au moins un serveur doit être configuré"
+        }
+    },
+    "results": {
+        "title": "Résultats et classement",
+        "export": "Exporter",
+        "clear": "Effacer",
+        "sortBy": "Trier par :",
+        "noResults": "Aucun résultat pour l'instant. Lance un benchmark pour afficher les performances DNS.",
+        "confirmClear": "Êtes-vous sûr de vouloir effacer tous les résultats des tests ?",
+        "metrics": {
+            "average": "Temps de réponse moyen",
+            "min": "Temps de réponse minimum",
+            "max": "Temps de réponse maximum",
+            "median": "Temps de réponse médian",
+            "successRate": "Taux de réussite"
+        },
+        "units": {
+            "ms": "ms",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "Merci de sélectionner au moins un fournisseur DNS",
+        "noDomainsSelected": "Merci de sélectionner ou saisir au moins un domaine à tester",
+        "invalidDomain": "Domaine invalide : {{domain}}",
+        "testFailed": "Échec du test pour {{provider}} : {{error}}",
+        "networkError": "Erreur réseau survenue pendant le test"
+    },
+    "footer": {
+        "description": "YADNSB - Yet Another DNS Benchmark | Open Source DNS Performance Testing Tool"
     }
-  },
-  "errors": {
-    "noProvidersSelected": "Merci de sélectionner au moins un fournisseur DNS",
-    "noDomainsSelected": "Merci de sélectionner ou saisir au moins un domaine à tester",
-    "invalidDomain": "Domaine invalide : {{domain}}",
-    "testFailed": "Échec du test pour {{provider}} : {{error}}",
-    "networkError": "Erreur réseau survenue pendant le test"
-  },
-  "footer": {
-    "description": "YADNSB - Yet Another DNS Benchmark | Open Source DNS Performance Testing Tool"
-  }
 }
