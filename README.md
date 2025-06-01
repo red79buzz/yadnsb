@@ -23,6 +23,25 @@ docker run -d \
   ghcr.io/altendorfme/yadnsb:latest
 ```
 
+```bash
+services:
+  yadnsb:
+    image: ghcr.io/altendorfme/yadnsb:latest
+    container_name: yadnsb
+    restart: always
+    mem_limit: 256m
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    ports:
+      - 3000:3000
+```
+
 ## 2: Local
 
 ### Prerequisites
