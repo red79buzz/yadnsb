@@ -1,0 +1,103 @@
+{
+    "app": {
+        "title": "YaDNSb - もう一つのDNSベンチマーク",
+        "subtitle": "もう一つのDNSベンチマーク"
+    },
+    "navigation": {
+        "configuration": "テスト設定",
+        "providers": "DNSプロバイダー",
+        "results": "結果とランキング"
+    },
+    "configuration": {
+        "testDomains": "テストドメイン",
+        "usePresetDomains": "プリセットドメインを使用",
+        "customDomains": "カスタムドメインを入力（1行に1つ）",
+        "testInterval": "リクエスト間隔（秒）",
+        "testCount": "プロバイダーごとのテスト数",
+        "protocolTypes": "DNSプロトコルタイプ",
+        "startTest": "ベンチマーク開始",
+        "stopTest": "テスト停止"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "DNS over HTTPS (DoH)",
+        "DoT": "DNS over TLS (DoT)",
+        "DoQ": "DNS over QUIC (DoQ)"
+    },
+    "progress": {
+        "title": "テスト進捗",
+        "overall": "全体進捗",
+        "ready": "テスト開始準備完了",
+        "testing": "{{provider}} - {{protocol}} をテスト中 ({{current}}/{{total}})",
+        "completed": "テスト完了"
+    },
+    "providers": {
+        "selectAll": "すべて選択",
+        "deselectAll": "選択解除",
+        "selected": "{{count}} プロバイダー選択済み",
+        "provider": "プロバイダー",
+        "protocol": "プロトコル",
+        "address": "アドレス",
+        "port": "ポート",
+        "addCustom": "カスタムプロバイダーを追加",
+        "customProvider": "カスタムプロバイダー"
+    },
+    "customProvider": {
+        "title": "カスタムプロバイダーを追加",
+        "name": "プロバイダー名",
+        "namePlaceholder": "例: 私のカスタムDNS",
+        "ipv4Primary": "プライマリIPv4",
+        "ipv4Secondary": "セカンダリIPv4 (オプション)",
+        "ipv6Primary": "プライマリIPv6",
+        "ipv6Secondary": "セカンダリIPv6 (オプション)",
+        "dohUrl": "DoH URL (オプション)",
+        "dohUrlPlaceholder": "https://example.com/dns-query",
+        "dotHost": "DoTホスト (オプション)",
+        "dotHostPlaceholder": "dns.example.com",
+        "doqHost": "DoQホスト (オプション)",
+        "doqHostPlaceholder": "dns.example.com",
+        "port": "ポート",
+        "add": "プロバイダーを追加",
+        "cancel": "キャンセル",
+        "edit": "編集",
+        "delete": "削除",
+        "confirmDelete": "このカスタムプロバイダーを削除してもよろしいですか？",
+        "validation": {
+            "nameRequired": "プロバイダー名は必須です",
+            "invalidIPv4": "無効なIPv4アドレス",
+            "invalidIPv6": "無効なIPv6アドレス",
+            "invalidUrl": "無効なURL",
+            "atLeastOneServer": "少なくとも1つのサーバーを設定する必要があります"
+        }
+    },
+    "results": {
+        "title": "結果とランキング",
+        "export": "エクスポート",
+        "clear": "クリア",
+        "sortBy": "並べ替え:",
+        "noResults": "まだテスト結果がありません。DNSパフォーマンスデータを見るにはベンチマークを開始してください。",
+        "confirmClear": "すべてのテスト結果をクリアしてもよろしいですか？",
+        "metrics": {
+            "average": "平均応答時間",
+            "min": "最小応答時間",
+            "max": "最大応答時間",
+            "median": "中央値応答時間",
+            "successRate": "成功率"
+        },
+        "units": {
+            "ms": "ミリ秒",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "少なくとも1つのDNSプロバイダーを選択してください",
+        "noDomainsSelected": "テストするドメインを少なくとも1つ選択または入力してください",
+        "invalidDomain": "無効なドメイン: {{domain}}",
+        "testFailed": "{{provider}} のテストが失敗しました: {{error}}",
+        "networkError": "テスト中にネットワークエラーが発生しました"
+    },
+    "footer": {
+        "description": "YADNSB - もう一つのDNSベンチマーク | オープンソースDNSパフォーマンステストツール"
+    }
+}

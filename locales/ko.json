@@ -1,0 +1,103 @@
+{
+    "app": {
+        "title": "YaDNSb - 또 다른 DNS 벤치마크",
+        "subtitle": "또 다른 DNS 벤치마크"
+    },
+    "navigation": {
+        "configuration": "테스트 구성",
+        "providers": "DNS 공급자",
+        "results": "결과 및 순위"
+    },
+    "configuration": {
+        "testDomains": "테스트 도메인",
+        "usePresetDomains": "사전 설정된 도메인 사용",
+        "customDomains": "사용자 정의 도메인 입력 (한 줄에 하나씩)",
+        "testInterval": "요청 간 간격 (초)",
+        "testCount": "공급자당 테스트 횟수",
+        "protocolTypes": "DNS 프로토콜 유형",
+        "startTest": "벤치마크 시작",
+        "stopTest": "테스트 중지"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "HTTPS 기반 DNS (DoH)",
+        "DoT": "TLS 기반 DNS (DoT)",
+        "DoQ": "QUIC 기반 DNS (DoQ)"
+    },
+    "progress": {
+        "title": "테스트 진행 상황",
+        "overall": "전체 진행률",
+        "ready": "테스트 시작 준비 완료",
+        "testing": "{{provider}} - {{protocol}} 테스트 중 ({{current}}/{{total}})",
+        "completed": "테스트 완료"
+    },
+    "providers": {
+        "selectAll": "전체 선택",
+        "deselectAll": "전체 해제",
+        "selected": "{{count}}개 공급자 선택됨",
+        "provider": "공급자",
+        "protocol": "프로토콜",
+        "address": "주소",
+        "port": "포트",
+        "addCustom": "사용자 정의 공급자 추가",
+        "customProvider": "사용자 정의 공급자"
+    },
+    "customProvider": {
+        "title": "사용자 정의 공급자 추가",
+        "name": "공급자 이름",
+        "namePlaceholder": "예: 나의 사용자 정의 DNS",
+        "ipv4Primary": "기본 IPv4",
+        "ipv4Secondary": "보조 IPv4 (선택 사항)",
+        "ipv6Primary": "기본 IPv6",
+        "ipv6Secondary": "보조 IPv6 (선택 사항)",
+        "dohUrl": "DoH URL (선택 사항)",
+        "dohUrlPlaceholder": "https://example.com/dns-query",
+        "dotHost": "DoT 호스트 (선택 사항)",
+        "dotHostPlaceholder": "dns.example.com",
+        "doqHost": "DoQ 호스트 (선택 사항)",
+        "doqHostPlaceholder": "dns.example.com",
+        "port": "포트",
+        "add": "공급자 추가",
+        "cancel": "취소",
+        "edit": "편집",
+        "delete": "삭제",
+        "confirmDelete": "이 사용자 정의 공급자를 삭제하시겠습니까?",
+        "validation": {
+            "nameRequired": "공급자 이름은 필수입니다",
+            "invalidIPv4": "잘못된 IPv4 주소",
+            "invalidIPv6": "잘못된 IPv6 주소",
+            "invalidUrl": "잘못된 URL",
+            "atLeastOneServer": "최소한 하나의 서버를 구성해야 합니다"
+        }
+    },
+    "results": {
+        "title": "결과 및 순위",
+        "export": "내보내기",
+        "clear": "지우기",
+        "sortBy": "정렬 기준:",
+        "noResults": "아직 테스트 결과가 없습니다. DNS 성능 데이터를 보려면 벤치마크를 시작하세요.",
+        "confirmClear": "모든 테스트 결과를 지우시겠습니까?",
+        "metrics": {
+            "average": "평균 응답 시간",
+            "min": "최소 응답 시간",
+            "max": "최대 응답 시간",
+            "median": "중앙값 응답 시간",
+            "successRate": "성공률"
+        },
+        "units": {
+            "ms": "밀리초",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "최소한 하나의 DNS 공급자를 선택하세요",
+        "noDomainsSelected": "테스트할 도메인을 최소한 하나 선택하거나 입력하세요",
+        "invalidDomain": "잘못된 도메인: {{domain}}",
+        "testFailed": "{{provider}} 테스트 실패: {{error}}",
+        "networkError": "테스트 중 네트워크 오류 발생"
+    },
+    "footer": {
+        "description": "YADNSB - 또 다른 DNS 벤치마크 | 오픈 소스 DNS 성능 테스트 도구"
+    }
+}

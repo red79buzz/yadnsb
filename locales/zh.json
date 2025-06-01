@@ -1,0 +1,103 @@
+{
+    "app": {
+        "title": "YaDNSb - 又一个DNS基准测试",
+        "subtitle": "又一个DNS基准测试"
+    },
+    "navigation": {
+        "configuration": "测试配置",
+        "providers": "DNS提供商",
+        "results": "结果与排名"
+    },
+    "configuration": {
+        "testDomains": "测试域名",
+        "usePresetDomains": "使用预设域名",
+        "customDomains": "输入自定义域名（每行一个）",
+        "testInterval": "请求间隔（秒）",
+        "testCount": "每个提供商的测试次数",
+        "protocolTypes": "DNS协议类型",
+        "startTest": "开始基准测试",
+        "stopTest": "停止测试"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "DNS over HTTPS (DoH)",
+        "DoT": "DNS over TLS (DoT)",
+        "DoQ": "DNS over QUIC (DoQ)"
+    },
+    "progress": {
+        "title": "测试进度",
+        "overall": "总体进度",
+        "ready": "准备开始测试",
+        "testing": "正在测试 {{provider}} - {{protocol}} ({{current}}/{{total}})",
+        "completed": "测试完成"
+    },
+    "providers": {
+        "selectAll": "全选",
+        "deselectAll": "取消全选",
+        "selected": "已选择 {{count}} 个提供商",
+        "provider": "提供商",
+        "protocol": "协议",
+        "address": "地址",
+        "port": "端口",
+        "addCustom": "添加自定义提供商",
+        "customProvider": "自定义提供商"
+    },
+    "customProvider": {
+        "title": "添加自定义提供商",
+        "name": "提供商名称",
+        "namePlaceholder": "例如：我的自定义DNS",
+        "ipv4Primary": "主IPv4",
+        "ipv4Secondary": "备用IPv4（可选）",
+        "ipv6Primary": "主IPv6",
+        "ipv6Secondary": "备用IPv6（可选）",
+        "dohUrl": "DoH URL（可选）",
+        "dohUrlPlaceholder": "https://example.com/dns-query",
+        "dotHost": "DoT主机（可选）",
+        "dotHostPlaceholder": "dns.example.com",
+        "doqHost": "DoQ主机（可选）",
+        "doqHostPlaceholder": "dns.example.com",
+        "port": "端口",
+        "add": "添加提供商",
+        "cancel": "取消",
+        "edit": "编辑",
+        "delete": "删除",
+        "confirmDelete": "确定要删除此自定义提供商吗？",
+        "validation": {
+            "nameRequired": "提供商名称必填",
+            "invalidIPv4": "无效的IPv4地址",
+            "invalidIPv6": "无效的IPv6地址",
+            "invalidUrl": "无效的URL",
+            "atLeastOneServer": "至少需要配置一个服务器"
+        }
+    },
+    "results": {
+        "title": "结果与排名",
+        "export": "导出",
+        "clear": "清除",
+        "sortBy": "排序方式：",
+        "noResults": "尚无测试结果。开始基准测试以查看DNS性能数据。",
+        "confirmClear": "确定要清除所有测试结果吗？",
+        "metrics": {
+            "average": "平均响应时间",
+            "min": "最小响应时间",
+            "max": "最大响应时间",
+            "median": "中位响应时间",
+            "successRate": "成功率"
+        },
+        "units": {
+            "ms": "毫秒",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "请至少选择一个DNS提供商",
+        "noDomainsSelected": "请选择或输入至少一个测试域名",
+        "invalidDomain": "无效域名：{{domain}}",
+        "testFailed": "{{provider}} 测试失败：{{error}}",
+        "networkError": "测试期间发生网络错误"
+    },
+    "footer": {
+        "description": "YADNSB - 又一个DNS基准测试 | 开源DNS性能测试工具"
+    }
+}

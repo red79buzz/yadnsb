@@ -1,0 +1,103 @@
+{
+    "app": {
+        "title": "YaDNSb - एक और DNS बेंचमार्क",
+        "subtitle": "एक और DNS बेंचमार्क"
+    },
+    "navigation": {
+        "configuration": "टेस्ट कॉन्फिगरेशन",
+        "providers": "DNS प्रदाता",
+        "results": "परिणाम और रैंकिंग"
+    },
+    "configuration": {
+        "testDomains": "टेस्ट डोमेन",
+        "usePresetDomains": "प्रीसेट डोमेन का उपयोग करें",
+        "customDomains": "कस्टम डोमेन दर्ज करें (प्रति पंक्ति एक)",
+        "testInterval": "अनुरोधों के बीच अंतराल (सेकंड)",
+        "testCount": "प्रति प्रदाता टेस्ट की संख्या",
+        "protocolTypes": "DNS प्रोटोकॉल प्रकार",
+        "startTest": "बेंचमार्क शुरू करें",
+        "stopTest": "टेस्ट रोकें"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "DNS over HTTPS (DoH)",
+        "DoT": "DNS over TLS (DoT)",
+        "DoQ": "DNS over QUIC (DoQ)"
+    },
+    "progress": {
+        "title": "टेस्ट प्रगति",
+        "overall": "कुल प्रगति",
+        "ready": "टेस्ट शुरू करने के लिए तैयार",
+        "testing": "{{provider}} - {{protocol}} का परीक्षण ({{current}}/{{total}})",
+        "completed": "टेस्ट पूरा हुआ"
+    },
+    "providers": {
+        "selectAll": "सभी चुनें",
+        "deselectAll": "सभी अचयनित करें",
+        "selected": "{{count}} प्रदाता चुने गए",
+        "provider": "प्रदाता",
+        "protocol": "प्रोटोकॉल",
+        "address": "पता",
+        "port": "पोर्ट",
+        "addCustom": "कस्टम प्रदाता जोड़ें",
+        "customProvider": "कस्टम प्रदाता"
+    },
+    "customProvider": {
+        "title": "कस्टम प्रदाता जोड़ें",
+        "name": "प्रदाता नाम",
+        "namePlaceholder": "उदा. मेरा कस्टम DNS",
+        "ipv4Primary": "प्राथमिक IPv4",
+        "ipv4Secondary": "द्वितीयक IPv4 (वैकल्पिक)",
+        "ipv6Primary": "प्राथमिक IPv6",
+        "ipv6Secondary": "द्वितीयक IPv6 (वैकल्पिक)",
+        "dohUrl": "DoH URL (वैकल्पिक)",
+        "dohUrlPlaceholder": "https://example.com/dns-query",
+        "dotHost": "DoT होस्ट (वैकल्पिक)",
+        "dotHostPlaceholder": "dns.example.com",
+        "doqHost": "DoQ होस्ट (वैकल्पिक)",
+        "doqHostPlaceholder": "dns.example.com",
+        "port": "पोर्ट",
+        "add": "प्रदाता जोड़ें",
+        "cancel": "रद्द करें",
+        "edit": "संपादित करें",
+        "delete": "हटाएं",
+        "confirmDelete": "क्या आप वाकई इस कस्टम प्रदाता को हटाना चाहते हैं?",
+        "validation": {
+            "nameRequired": "प्रदाता नाम आवश्यक है",
+            "invalidIPv4": "अमान्य IPv4 पता",
+            "invalidIPv6": "अमान्य IPv6 पता",
+            "invalidUrl": "अमान्य URL",
+            "atLeastOneServer": "कम से कम एक सर्वर कॉन्फिगर होना चाहिए"
+        }
+    },
+    "results": {
+        "title": "परिणाम और रैंकिंग",
+        "export": "निर्यात करें",
+        "clear": "साफ करें",
+        "sortBy": "इसके अनुसार क्रमबद्ध करें:",
+        "noResults": "अभी तक कोई टेस्ट परिणाम नहीं। DNS प्रदर्शन डेटा देखने के लिए बेंचमार्क शुरू करें।",
+        "confirmClear": "क्या आप वाकई सभी टेस्ट परिणाम साफ करना चाहते हैं?",
+        "metrics": {
+            "average": "औसत प्रतिक्रिया समय",
+            "min": "न्यूनतम प्रतिक्रिया समय",
+            "max": "अधिकतम प्रतिक्रिया समय",
+            "median": "माध्य प्रतिक्रिया समय",
+            "successRate": "सफलता दर"
+        },
+        "units": {
+            "ms": "मिलीसेकंड",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "कृपया कम से कम एक DNS प्रदाता चुनें",
+        "noDomainsSelected": "कृपया परीक्षण के लिए कम से कम एक डोमेन चुनें या दर्ज करें",
+        "invalidDomain": "अमान्य डोमेन: {{domain}}",
+        "testFailed": "{{provider}} के लिए टेस्ट विफल: {{error}}",
+        "networkError": "टेस्टिंग के दौरान नेटवर्क त्रुटि हुई"
+    },
+    "footer": {
+        "description": "YADNSB - एक और DNS बेंचमार्क | ओपन सोर्स DNS प्रदर्शन परीक्षण उपकरण"
+    }
+}
