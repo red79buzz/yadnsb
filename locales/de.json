@@ -1,0 +1,103 @@
+{
+    "app": {
+        "title": "YaDNSb - Noch ein DNS-Benchmark",
+        "subtitle": "Noch ein DNS-Benchmark"
+    },
+    "navigation": {
+        "configuration": "Testkonfiguration",
+        "providers": "DNS-Anbieter",
+        "results": "Ergebnisse & Rangliste"
+    },
+    "configuration": {
+        "testDomains": "Testdomänen",
+        "usePresetDomains": "Vordefinierte Domänen verwenden",
+        "customDomains": "Benutzerdefinierte Domänen eingeben (eine pro Zeile)",
+        "testInterval": "Intervall zwischen Anfragen (Sekunden)",
+        "testCount": "Anzahl der Tests pro Anbieter",
+        "protocolTypes": "DNS-Protokolltypen",
+        "startTest": "Benchmark starten",
+        "stopTest": "Test stoppen"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "DNS über HTTPS (DoH)",
+        "DoT": "DNS über TLS (DoT)",
+        "DoQ": "DNS über QUIC (DoQ)"
+    },
+    "progress": {
+        "title": "Testfortschritt",
+        "overall": "Gesamtfortschritt",
+        "ready": "Bereit zum Testen",
+        "testing": "Teste {{provider}} - {{protocol}} ({{current}}/{{total}})",
+        "completed": "Test abgeschlossen"
+    },
+    "providers": {
+        "selectAll": "Alle auswählen",
+        "deselectAll": "Alle abwählen",
+        "selected": "{{count}} Anbieter ausgewählt",
+        "provider": "Anbieter",
+        "protocol": "Protokoll",
+        "address": "Adresse",
+        "port": "Port",
+        "addCustom": "Benutzerdefinierten Anbieter hinzufügen",
+        "customProvider": "Benutzerdefinierter Anbieter"
+    },
+    "customProvider": {
+        "title": "Benutzerdefinierten Anbieter hinzufügen",
+        "name": "Anbietername",
+        "namePlaceholder": "z.B. Mein benutzerdefinierter DNS",
+        "ipv4Primary": "Primäre IPv4",
+        "ipv4Secondary": "Sekundäre IPv4 (optional)",
+        "ipv6Primary": "Primäre IPv6",
+        "ipv6Secondary": "Sekundäre IPv6 (optional)",
+        "dohUrl": "DoH-URL (optional)",
+        "dohUrlPlaceholder": "https://example.com/dns-query",
+        "dotHost": "DoT-Host (optional)",
+        "dotHostPlaceholder": "dns.example.com",
+        "doqHost": "DoQ-Host (optional)",
+        "doqHostPlaceholder": "dns.example.com",
+        "port": "Port",
+        "add": "Anbieter hinzufügen",
+        "cancel": "Abbrechen",
+        "edit": "Bearbeiten",
+        "delete": "Löschen",
+        "confirmDelete": "Möchten Sie diesen benutzerdefinierten Anbieter wirklich löschen?",
+        "validation": {
+            "nameRequired": "Anbietername ist erforderlich",
+            "invalidIPv4": "Ungültige IPv4-Adresse",
+            "invalidIPv6": "Ungültige IPv6-Adresse",
+            "invalidUrl": "Ungültige URL",
+            "atLeastOneServer": "Mindestens ein Server muss konfiguriert sein"
+        }
+    },
+    "results": {
+        "title": "Ergebnisse & Rangliste",
+        "export": "Exportieren",
+        "clear": "Löschen",
+        "sortBy": "Sortieren nach:",
+        "noResults": "Noch keine Testergebnisse. Starten Sie einen Benchmark, um DNS-Leistungsdaten zu sehen.",
+        "confirmClear": "Möchten Sie wirklich alle Testergebnisse löschen?",
+        "metrics": {
+            "average": "Durchschnittliche Antwortzeit",
+            "min": "Minimale Antwortzeit",
+            "max": "Maximale Antwortzeit",
+            "median": "Median Antwortzeit",
+            "successRate": "Erfolgsrate"
+        },
+        "units": {
+            "ms": "ms",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "Bitte wählen Sie mindestens einen DNS-Anbieter aus",
+        "noDomainsSelected": "Bitte wählen oder geben Sie mindestens eine Testdomäne ein",
+        "invalidDomain": "Ungültige Domäne: {{domain}}",
+        "testFailed": "Test fehlgeschlagen für {{provider}}: {{error}}",
+        "networkError": "Netzwerkfehler während des Tests aufgetreten"
+    },
+    "footer": {
+        "description": "YADNSB - Noch ein DNS-Benchmark | Open-Source DNS-Leistungstest-Tool"
+    }
+}

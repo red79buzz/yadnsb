@@ -13,7 +13,7 @@ class YADNSBApp {
         this.renderPresetDomains();
         this.updateUI();
         this.loadSavedLanguage();
-        
+
         resultsManager.displayResults();
     }
 
@@ -23,7 +23,7 @@ class YADNSBApp {
             const data = await response.json();
             this.providers = data.providers;
             this.testDomains = data.testDomains;
-            
+
             if (window.customProvidersManager) {
                 const customProviders = window.customProvidersManager.getCustomProviders();
                 this.providers = [...this.providers, ...customProviders];
@@ -44,15 +44,15 @@ class YADNSBApp {
     setupEventListeners() {
         document.getElementById('startTest').addEventListener('click', () => this.startTest());
         document.getElementById('stopTest').addEventListener('click', () => this.stopTest());
-        
+
         document.getElementById('selectAllProviders').addEventListener('click', () => this.selectAllProviders());
         document.getElementById('deselectAllProviders').addEventListener('click', () => this.deselectAllProviders());
         document.getElementById('addCustomProvider').addEventListener('click', () => this.addCustomProvider());
-        
+
         document.getElementById('exportCSV').addEventListener('click', () => this.exportCSV());
         document.getElementById('exportJSON').addEventListener('click', () => this.exportJSON());
         document.getElementById('clearResults').addEventListener('click', () => this.clearResults());
-        
+
         document.getElementById('sortBy').addEventListener('change', (e) => {
             resultsManager.setSortBy(e.target.value);
         });
@@ -157,18 +157,18 @@ class YADNSBApp {
 
     generateTableRows(filteredProviders, selectedProtocols) {
         let rows = '';
-        
+
         filteredProviders.forEach((provider, providerIndex) => {
             const filteredServers = provider.servers.filter(server =>
                 selectedProtocols.includes(server.type)
             );
-            
+
             const isSelected = this.selectedProviders.some(p => p.name === provider.name);
-            
+
             filteredServers.forEach((server, index) => {
                 const isFirstRow = index === 0;
                 const rowspan = isFirstRow ? filteredServers.length : 0;
-                
+
                 rows += `
                     <tr class="${isSelected ? 'table-success' : ''}">
                         ${isFirstRow ? `
@@ -208,7 +208,7 @@ class YADNSBApp {
                 `;
             });
         });
-        
+
         return rows;
     }
 
@@ -229,7 +229,7 @@ class YADNSBApp {
 
         const allCheckboxes = document.querySelectorAll('.provider-checkbox');
         const checkedCheckboxes = document.querySelectorAll('.provider-checkbox:checked');
-        
+
         if (checkedCheckboxes.length === 0) {
             selectAllCheckbox.checked = false;
             selectAllCheckbox.indeterminate = false;
@@ -246,7 +246,7 @@ class YADNSBApp {
         const select = document.getElementById('presetDomains');
         if (!select || !this.testDomains) return;
 
-        select.innerHTML = this.testDomains.map(domain => 
+        select.innerHTML = this.testDomains.map(domain =>
             `<option value="${domain}" selected>${domain}</option>`
         ).join('');
     }
@@ -265,7 +265,7 @@ class YADNSBApp {
     toggleProvider(checkbox) {
         const providerName = checkbox.dataset.provider;
         const provider = this.providers.find(p => p.name === providerName);
-        
+
         if (!provider) return;
 
         if (checkbox.checked) {
@@ -320,7 +320,7 @@ class YADNSBApp {
         buttons.forEach(btn => {
             const text = btn.querySelector('.provider-count');
             if (text) text.remove();
-            
+
             if (count > 0) {
                 const span = document.createElement('span');
                 span.className = 'provider-count ms-1 badge bg-light text-dark';
@@ -363,7 +363,7 @@ class YADNSBApp {
 
     getTestConfiguration() {
         const usePresetDomains = document.getElementById('usePresetDomains').checked;
-        const selectedPresetDomains = usePresetDomains ? 
+        const selectedPresetDomains = usePresetDomains ?
             Array.from(document.getElementById('presetDomains').selectedOptions).map(opt => opt.value) : [];
         const customDomains = document.getElementById('customDomains').value;
         const testInterval = parseFloat(document.getElementById('testInterval').value);
@@ -383,7 +383,7 @@ class YADNSBApp {
 
     validateConfiguration(config) {
         const i18n = window.i18n;
-        
+
         if (config.selectedProviders.length === 0) {
             return { valid: false, message: i18n ? i18n.t('errors.noProvidersSelected') : 'Please select at least one DNS provider.' };
         }
@@ -456,13 +456,13 @@ class YADNSBApp {
         try {
             await window.i18n.setLanguage(langCode);
             this.updateLanguageDisplay(langCode);
-            
+
             if (window.resultsManager) {
                 window.resultsManager.updateTranslations();
             }
-            
+
             localStorage.setItem('selectedLanguage', langCode);
-            
+
             document.documentElement.lang = langCode;
         } catch (error) {
             console.error('Failed to change language:', error);
@@ -472,10 +472,19 @@ class YADNSBApp {
     updateLanguageDisplay(langCode) {
         const languageNames = {
             'en': 'English',
-            'pt-BR': 'Português (BR)',
-            'fr': 'Français'
+            'zh': '中文 (简体)',
+            'hi': 'हिन्दी',
+            'es': 'Español',
+            'fr': 'Français',
+            'pt': 'Português',
+            'pt-br': 'Português (BR)',
+            'ru': 'Русский',
+            'de': 'Deutsch',
+            'it': 'Italiano',
+            'ja': '日本語',
+            'ko': '한국어'
         };
-        
+
         const currentLanguageSpan = document.getElementById('currentLanguage');
         if (currentLanguageSpan) {
             currentLanguageSpan.textContent = languageNames[langCode] || 'English';

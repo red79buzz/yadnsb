@@ -1,0 +1,103 @@
+{
+    "app": {
+        "title": "YaDNSb - Ещё один DNS-бенчмарк",
+        "subtitle": "Ещё один DNS-бенчмарк"
+    },
+    "navigation": {
+        "configuration": "Конфигурация теста",
+        "providers": "DNS-провайдеры",
+        "results": "Результаты и рейтинги"
+    },
+    "configuration": {
+        "testDomains": "Тестовые домены",
+        "usePresetDomains": "Использовать предустановленные домены",
+        "customDomains": "Введите свои домены (по одному на строку)",
+        "testInterval": "Интервал между запросами (секунды)",
+        "testCount": "Количество тестов на провайдера",
+        "protocolTypes": "Типы DNS-протоколов",
+        "startTest": "Начать тестирование",
+        "stopTest": "Остановить тест"
+    },
+    "protocols": {
+        "IPv4": "IPv4",
+        "IPv6": "IPv6",
+        "DoH": "DNS через HTTPS (DoH)",
+        "DoT": "DNS через TLS (DoT)",
+        "DoQ": "DNS через QUIC (DoQ)"
+    },
+    "progress": {
+        "title": "Ход тестирования",
+        "overall": "Общий прогресс",
+        "ready": "Готово к началу тестирования",
+        "testing": "Тестирование {{provider}} - {{protocol}} ({{current}}/{{total}})",
+        "completed": "Тестирование завершено"
+    },
+    "providers": {
+        "selectAll": "Выбрать все",
+        "deselectAll": "Снять выбор",
+        "selected": "Выбрано {{count}} провайдеров",
+        "provider": "Провайдер",
+        "protocol": "Протокол",
+        "address": "Адрес",
+        "port": "Порт",
+        "addCustom": "Добавить свой провайдер",
+        "customProvider": "Свой провайдер"
+    },
+    "customProvider": {
+        "title": "Добавить своего провайдера",
+        "name": "Название провайдера",
+        "namePlaceholder": "например, Мой DNS",
+        "ipv4Primary": "Основной IPv4",
+        "ipv4Secondary": "Дополнительный IPv4 (необязательно)",
+        "ipv6Primary": "Основной IPv6",
+        "ipv6Secondary": "Дополнительный IPv6 (необязательно)",
+        "dohUrl": "URL DoH (необязательно)",
+        "dohUrlPlaceholder": "https://example.com/dns-query",
+        "dotHost": "Хост DoT (необязательно)",
+        "dotHostPlaceholder": "dns.example.com",
+        "doqHost": "Хост DoQ (необязательно)",
+        "doqHostPlaceholder": "dns.example.com",
+        "port": "Порт",
+        "add": "Добавить провайдера",
+        "cancel": "Отмена",
+        "edit": "Редактировать",
+        "delete": "Удалить",
+        "confirmDelete": "Вы уверены, что хотите удалить этого провайдера?",
+        "validation": {
+            "nameRequired": "Название провайдера обязательно",
+            "invalidIPv4": "Неверный IPv4-адрес",
+            "invalidIPv6": "Неверный IPv6-адрес",
+            "invalidUrl": "Неверный URL",
+            "atLeastOneServer": "Необходимо настроить хотя бы один сервер"
+        }
+    },
+    "results": {
+        "title": "Результаты и рейтинги",
+        "export": "Экспорт",
+        "clear": "Очистить",
+        "sortBy": "Сортировать по:",
+        "noResults": "Результатов пока нет. Запустите тестирование, чтобы увидеть данные о скорости DNS.",
+        "confirmClear": "Вы уверены, что хотите удалить все результаты тестов?",
+        "metrics": {
+            "average": "Среднее время ответа",
+            "min": "Минимальное время ответа",
+            "max": "Максимальное время ответа",
+            "median": "Медианное время ответа",
+            "successRate": "Успешность запросов"
+        },
+        "units": {
+            "ms": "мс",
+            "percent": "%"
+        }
+    },
+    "errors": {
+        "noProvidersSelected": "Выберите хотя бы одного DNS-провайдера",
+        "noDomainsSelected": "Выберите или введите хотя бы один домен для тестирования",
+        "invalidDomain": "Неверный домен: {{domain}}",
+        "testFailed": "Ошибка теста для {{provider}}: {{error}}",
+        "networkError": "Произошла сетевая ошибка во время тестирования"
+    },
+    "footer": {
+        "description": "YADNSB - Ещё один DNS-бенчмарк | Открытый инструмент тестирования DNS"
+    }
+}
