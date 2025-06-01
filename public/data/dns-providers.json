@@ -263,12 +263,15 @@
         }
     ],
     "testDomains": [
-        "google.com",
-        "cloudflare.com",
-        "bunny.net",
-        "fastly.com",
-        "cdn77.com",
+        "amazon.com",
         "apple.com",
-        "netflix.com"
+        "cloudflare.com",
+        "facebook.com",
+        "github.com",
+        "google.com",
+        "netflix.com",
+        "pinterest.com",
+        "reddit.com",
+        "youtube.com"
     ]
 }
