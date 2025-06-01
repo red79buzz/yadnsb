@@ -22,7 +22,7 @@ class DNSTester {
         this.completedTests = 0;
 
         this.updateProgress(0, 'Starting DNS benchmark...');
-        
+
         try {
             await this.connectWebSocket();
             await this.executeTests(config);
@@ -38,7 +38,7 @@ class DNSTester {
     buildTestQueue(config) {
         const queue = [];
         const domains = this.getTestDomains(config);
-        
+
         config.selectedProviders.forEach(provider => {
             provider.servers.forEach(server => {
                 if (config.selectedProtocols.includes(server.type)) {
@@ -46,7 +46,7 @@ class DNSTester {
                         for (let i = 0; i < config.testCount; i++) {
                             queue.push({
                                 provider: provider.name,
-                                server: server,
+                                server: { ...server, name: provider.name },
                                 domain: domain,
                                 iteration: i + 1
                             });
@@ -61,11 +61,11 @@ class DNSTester {
 
     getTestDomains(config) {
         let domains = [];
-        
+
         if (config.usePresetDomains && config.selectedPresetDomains.length > 0) {
             domains = domains.concat(config.selectedPresetDomains);
         }
-        
+
         if (config.customDomains && config.customDomains.trim()) {
             const customDomains = config.customDomains
                 .split('\n')
@@ -95,23 +95,23 @@ class DNSTester {
         return new Promise((resolve, reject) => {
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
             const wsUrl = `${protocol}//${window.location.host}/ws`;
-            
+
             this.websocket = new WebSocket(wsUrl);
-            
+
             this.websocket.onopen = () => {
                 console.log('WebSocket connected');
                 resolve();
             };
-            
+
             this.websocket.onmessage = (event) => {
                 this.handleWebSocketMessage(JSON.parse(event.data));
             };
-            
+
             this.websocket.onerror = (error) => {
                 console.error('WebSocket error:', error);
                 reject(error);
             };
-            
+
             this.websocket.onclose = () => {
                 console.log('WebSocket disconnected');
             };
@@ -128,7 +128,7 @@ class DNSTester {
     async executeTests(config) {
         for (let i = 0; i < this.testQueue.length && this.isRunning; i++) {
             const test = this.testQueue[i];
-            
+
             this.updateProgress(
                 (i / this.totalTests) * 100,
                 `Testing ${test.provider} - ${test.server.type} (${i + 1}/${this.totalTests})`
@@ -138,7 +138,7 @@ class DNSTester {
                 const result = await this.performSingleTest(test);
                 this.results.push(result);
                 this.completedTests++;
-                
+
                 window.dispatchEvent(new CustomEvent('testProgress', {
                     detail: {
                         percentage: (this.completedTests / this.totalTests) * 100,
@@ -146,7 +146,7 @@ class DNSTester {
                         results: [...this.results]
                     }
                 }));
-                
+
                 if (config.testInterval > 0) {
                     await this.sleep(config.testInterval * 1000);
                 }
@@ -164,7 +164,7 @@ class DNSTester {
                 };
                 this.results.push(failedResult);
                 this.completedTests++;
-                
+
                 window.dispatchEvent(new CustomEvent('testProgress', {
                     detail: {
                         percentage: (this.completedTests / this.totalTests) * 100,
@@ -176,7 +176,7 @@ class DNSTester {
         }
 
         this.updateProgress(100, 'Test completed');
-        
+
         window.dispatchEvent(new CustomEvent('testProgress', {
             detail: {
                 percentage: 100,
@@ -189,7 +189,7 @@ class DNSTester {
 
     async performSingleTest(test) {
         const startTime = performance.now();
-        
+
         try {
             const response = await fetch('/api/test', {
                 method: 'POST',
@@ -260,12 +260,12 @@ class DNSTester {
     updateProgress(percentage, status) {
         const progressBar = document.getElementById('overallProgress');
         const statusElement = document.getElementById('currentTest');
-        
+
         if (progressBar) {
             progressBar.style.width = `${percentage}%`;
             progressBar.setAttribute('aria-valuenow', percentage);
         }
-        
+
         if (statusElement) {
             statusElement.textContent = status;
         }
@@ -283,7 +283,7 @@ class DNSTester {
         console.error('Test error:', error);
         this.isRunning = false;
         this.updateProgress(0, `Error: ${error.message}`);
-        
+
         window.dispatchEvent(new CustomEvent('testError', {
             detail: { error: error.message }
         }));
